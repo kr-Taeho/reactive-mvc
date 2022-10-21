@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component
 @Component
 @AllArgsConstructor
 class RedisUtils @Autowired constructor(
-    private val redisTemplate: RedisTemplate<String, Any>,
+    private val redisTemplate: RedisTemplate<String, String>,
     private val reactiveRedisTemplate: ReactiveRedisTemplate<String, String>
 ) {
     companion object {

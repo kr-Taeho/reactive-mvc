@@ -1,0 +1,72 @@
+POST http://localhost:8080/user/add
+Content-Type: application/json
+
+{
+  "loginId": "adduser2",
+  "loginPw": "adduserpw",
+  "name" : "유저추가1",
+  "email": null,
+  "enabled": false
+}
+
+###
+
+DELETE http://localhost:8080/user/delete/101
+
+###
+
+PUT http://localhost:8080/user/update
+Content-Type: application/json
+
+{
+  "cid": 102,
+  "loginId": "adduser1",
+  "loginPw": "adduserpw",
+  "name" : "업데이트111",
+  "email": null,
+  "enabled": true
+}
+
+###
+GET http://localhost:8080/user/101
+
+###
+GET http://localhost:8080/user/by/user1
+
+###
+GET http://localhost:8080/users
+Authorization: Bearer {{auth_token}}
+
+###
+
+POST http://localhost:8080/user/pwc
+Content-Type: application/json
+
+{
+  "username": "user2",
+  "oldPassword": "test",
+  "newPassword": "password"
+}
+
+###
+
+POST http://localhost:8080/login
+Content-Type: application/json
+
+{
+  "username": "user2",
+  "password": "password"
+}
+
+> {% client.global.set("auth_token", response.body) %}
+###
+
+GET http://localhost:8080/todo/1
+Authorization: Bearer {{auth_token}}
+
+###
+
+GET http://localhost:8080/admin/test
+Authorization: Bearer {{auth_token}}
+
+###

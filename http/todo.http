@@ -1,0 +1,22 @@
+### 로그인
+POST http://localhost:8080/login
+Content-Type: application/json
+
+{
+  "username": "user2",
+  "password": "password"
+}
+
+
+> {% client.global.set("auth_token", response.body) %}
+
+### Todo Add
+POST http://localhost:8080/todo/add
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "title": "하이",
+  "content": "안녕",
+  "done": false
+}

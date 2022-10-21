@@ -1,0 +1,49 @@
+
+server:
+  port: 8080
+  error:
+    include-message: always
+
+spring.r2dbc.url: domain.com
+spring.r2dbc.database: webflux
+spring.r2dbc.username: admin
+spring.r2dbc.password: password
+spring.r2dbc.charset: utf8mb4
+spring.r2dbc.port: 3306
+spring.r2dbc.ssl: false
+spring.r2dbc.pool.max-size: 10
+spring.r2dbc.pool.initial-size: 5
+spring.r2dbc.pool.max-idle-time: 10
+spring.r2dbc.pool.max-life: 20
+spring.r2dbc.pool.max-create-connection-time: 10
+
+spring.password.encoder.secret: mysecret
+spring.password.encoder.iteration: 33
+spring.password.encoder.keylength: 256
+
+spring.jwt.secret: ThisIsSecretForJWTHS512SignatureAlgorithmThatMUSTHave64ByteLength
+spring.jwt.expiration.access: 600
+spring.jwt.expiration.refresh: 300
+
+logging.file.name: ${user.dir}/log/test.log
+logging.logback.rolling policy.max-history: 7
+logging.logback.rolling policy.max-file-size: 10MB
+#level.com.example.reactive: error
+
+spring:
+  redis:
+    host: localhost
+    port: 6379
+    lettuce:
+      pool:
+        min-idle: 2
+        max-idle: 5
+        max-active: 10
+  session:
+    store-type: redis
+    redis:
+      flush-mode: immediate
+
+
+springdoc:
+  version: 1.0.0

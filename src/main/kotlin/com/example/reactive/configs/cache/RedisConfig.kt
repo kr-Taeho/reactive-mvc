@@ -21,26 +21,26 @@ import org.springframework.data.redis.serializer.StringRedisSerializer
 class RedisConfig
 {
     @Bean
-    fun redisOperations(factory: ReactiveRedisConnectionFactory): ReactiveRedisOperations<String, Any> {
+    fun redisOperations(factory: ReactiveRedisConnectionFactory): ReactiveRedisOperations<String, String> {
         return reactiveRedisTemplate(factory)
     }
 
     @Bean
-    fun redisTemplate(factory: RedisConnectionFactory): RedisTemplate<String, Any> {
-        val redisTemplate = RedisTemplate<String, Any>()
+    fun redisTemplate(factory: RedisConnectionFactory): RedisTemplate<String, String> {
+        val redisTemplate = RedisTemplate<String, String>()
         redisTemplate.setConnectionFactory(factory)
         redisTemplate.keySerializer = StringRedisSerializer()
-        redisTemplate.valueSerializer = GenericJackson2JsonRedisSerializer()
+        redisTemplate.valueSerializer = StringRedisSerializer()
         return redisTemplate
     }
 
     @Bean
-    fun reactiveRedisTemplate(factory: ReactiveRedisConnectionFactory): ReactiveRedisTemplate<String, Any> {
+    fun reactiveRedisTemplate(factory: ReactiveRedisConnectionFactory): ReactiveRedisTemplate<String, String> {
         val serializationContext =
-            RedisSerializationContext.newSerializationContext<String, Any>(StringRedisSerializer())
-                .value(GenericJackson2JsonRedisSerializer())
+            RedisSerializationContext.newSerializationContext<String, String>(StringRedisSerializer())
+                .value(StringRedisSerializer())
                 .hashKey(StringRedisSerializer())
-                .hashValue(GenericJackson2JsonRedisSerializer())
+                .hashValue(StringRedisSerializer())
                 .build()
         return ReactiveRedisTemplate(factory, serializationContext)
     }
